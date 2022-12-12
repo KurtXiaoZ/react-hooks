@@ -6,13 +6,16 @@ import { useEffect, useRef } from "react";
  * @param {Number} limit time limit of the callback
  * @returns the throttled version of the function
  */
-export const useThrottle = (callback, limit) => {
+export const useThrottle = (callback, limit, dependencies = null) => {
     const waiting = useRef(false);
     const timerRef = useRef();
 
     useEffect(() => {
-        return () => timerRef.current && clearTimeout(timerRef.current);
-    }, []);
+        return () => {
+            waiting.current = false;
+            timerRef.current && clearTimeout(timerRef.current);
+        }
+    }, dependencies);
 
     const throttledCallback = (...args) => {
         if(!waiting.current) {
