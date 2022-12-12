@@ -1,8 +1,13 @@
-import { useCallback, useEffect, useRef, useState } from "react";
+import { useEffect, useRef } from "react";
 
+/**
+ * Get a throttled version of a function
+ * @param {Function} callback the original function
+ * @param {Number} limit time limit of the callback
+ * @returns the throttled version of the function
+ */
 export const useThrottle = (callback, limit) => {
     const waiting = useRef(false);
-    // const [waiting, setWaiting] = useState(false);
     const timerRef = useRef();
 
     useEffect(() => {
@@ -10,18 +15,14 @@ export const useThrottle = (callback, limit) => {
     }, []);
 
     const throttledCallback = (...args) => {
-        console.log('throttledCallback waiting:', waiting.current);
         if(!waiting.current) {
             callback.call(null, ...args);
-            // setWaiting(true);
             waiting.current = true;
             timerRef.current = setTimeout(() => {
-                // setWaiting(false);
                 waiting.current = false;
             }, [limit])
         }
     };
-
 
     return throttledCallback;
 }
