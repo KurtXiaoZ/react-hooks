@@ -16,3 +16,8 @@ Returns a throttled version of a function
 ```
 Returns a debounced version of a function
 ```
+
+`useUpdate`
+```
+Registers listeners solely for state updates
+```
