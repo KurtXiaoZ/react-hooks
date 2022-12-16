@@ -11,3 +11,8 @@ Handles the event of clicking outside of one or more elements
 ```
 Returns a throttled version of a function
 ```
+
+`useDebounce`
+```
+Returns a debounced version of a function
+```

@@ -4,6 +4,7 @@ import { useEffect, useRef } from "react";
  * Get a throttled version of a function
  * @param {Function} callback the original function
  * @param {Number} limit time limit of the callback
+ * @param {Array} dependencies dependencies of the throttled function
  * @returns the throttled version of the function
  */
 export const useThrottle = (callback, limit, dependencies = null) => {
